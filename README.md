@@ -9,29 +9,28 @@ JAVA FILE OF XML:
 
 package XMLDEMO.XMLDEMO;
 
-import javax.xml.parsers.*;
-import org.w3c.dom.*;
-import java.io.File;
+import javax.xml.parsers.*;  
+import org.w3c.dom.*;  
+import java.io.*;
 
 public class XMLProgam {
     public static void main(String[] args) throws Exception {
 
-        Document doc = DocumentBuilderFactory.newInstance()
-                           .newDocumentBuilder()
-                           .parse(new File("XML/student.xml"));
+        Document d = DocumentBuilderFactory.newInstance()
+                        .newDocumentBuilder()
+                        .parse(new File("XML/student.xml"));
 
-        NodeList list = doc.getElementsByTagName("Person");
+        NodeList n = d.getElementsByTagName("Person");
 
-        for (int i = 0; i < list.getLength(); i++) {
-            Element p = (Element) list.item(i);
-
-            String fn = p.getElementsByTagName("FirstName").item(0).getTextContent();
-            String ln = p.getElementsByTagName("LastName").item(0).getTextContent();
-
-            System.out.println(fn + " " + ln);
-        }
+        for (int i = 0; i < n.getLength(); i++)
+            System.out.println(
+                ((Element)n.item(i)).getElementsByTagName("FirstName").item(0).getTextContent()
+                + " " +
+                ((Element)n.item(i)).getElementsByTagName("LastName").item(0).getTextContent()
+            );
     }
 }
+
 ------------------------------------------------------------------------------------------------------
 student.xml:
 
